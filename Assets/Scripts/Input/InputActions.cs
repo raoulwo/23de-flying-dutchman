@@ -123,6 +123,16 @@ namespace Input
                     ""interactions"": """",
                     ""initialStateCheck"": true,
                     ""priority"": 0
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""c092e3fd-e087-42d4-8696-aa9412d13d65"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false,
+                    ""priority"": 0
                 }
             ],
             ""bindings"": [
@@ -202,6 +212,17 @@ namespace Input
                     ""action"": ""Steer"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""7a4a2e20-b6c7-4f22-a1ef-cf77e10dc6b9"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -274,6 +295,7 @@ namespace Input
             m_Spaceship_Move = m_Spaceship.FindAction("Move", throwIfNotFound: true);
             m_Spaceship_Roll = m_Spaceship.FindAction("Roll", throwIfNotFound: true);
             m_Spaceship_Steer = m_Spaceship.FindAction("Steer", throwIfNotFound: true);
+            m_Spaceship_Fire = m_Spaceship.FindAction("Fire", throwIfNotFound: true);
         }
 
         ~@InputActions()
@@ -357,6 +379,7 @@ namespace Input
         private readonly InputAction m_Spaceship_Move;
         private readonly InputAction m_Spaceship_Roll;
         private readonly InputAction m_Spaceship_Steer;
+        private readonly InputAction m_Spaceship_Fire;
         /// <summary>
         /// Provides access to input actions defined in input action map "Spaceship".
         /// </summary>
@@ -380,6 +403,10 @@ namespace Input
             /// Provides access to the underlying input action "Spaceship/Steer".
             /// </summary>
             public InputAction @Steer => m_Wrapper.m_Spaceship_Steer;
+            /// <summary>
+            /// Provides access to the underlying input action "Spaceship/Fire".
+            /// </summary>
+            public InputAction @Fire => m_Wrapper.m_Spaceship_Fire;
             /// <summary>
             /// Provides access to the underlying input action map instance.
             /// </summary>
@@ -415,6 +442,9 @@ namespace Input
                 @Steer.started += instance.OnSteer;
                 @Steer.performed += instance.OnSteer;
                 @Steer.canceled += instance.OnSteer;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
             }
 
             /// <summary>
@@ -435,6 +465,9 @@ namespace Input
                 @Steer.started -= instance.OnSteer;
                 @Steer.performed -= instance.OnSteer;
                 @Steer.canceled -= instance.OnSteer;
+                @Fire.started -= instance.OnFire;
+                @Fire.performed -= instance.OnFire;
+                @Fire.canceled -= instance.OnFire;
             }
 
             /// <summary>
@@ -561,6 +594,13 @@ namespace Input
             /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
             /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
             void OnSteer(InputAction.CallbackContext context);
+            /// <summary>
+            /// Method invoked when associated input action "Fire" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+            /// </summary>
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+            /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+            void OnFire(InputAction.CallbackContext context);
         }
     }
 }

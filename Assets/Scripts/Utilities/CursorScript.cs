@@ -7,7 +7,7 @@ namespace Utilities
         [SerializeField] private bool visible;
         [SerializeField] private bool locked;
 
-        private void Start()
+        private void Awake()
         {
             Cursor.visible = visible;
             Cursor.lockState = locked ? CursorLockMode.None : CursorLockMode.Locked;
