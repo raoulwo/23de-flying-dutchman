@@ -13,7 +13,11 @@
 
 ### Raoul Wograndl
 
-- TODO
+- Project Setup
+- Spaceship Movement
+- Spaceship Collisions and Mass
+- Projectile Object Pool and Collisions
+- Message Logger
 
 ## Unity Version
 
