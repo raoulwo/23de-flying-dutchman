@@ -2,22 +2,21 @@
 
 ## Team
 
-- INSERT NAME (ct26mXXX)
+- Viktoriia Baikova (ct26m001)
 - Raoul Wograndl (ct26m011)
 
 ## Contributions
 
-### INSERT NAME
+### Viktoriia Baikova
 
-- TODO
+- Projectile Settings and Logic
+- Message Logger
 
 ### Raoul Wograndl
 
-- Project Setup
 - Spaceship Movement
 - Spaceship Collisions and Mass
 - Projectile Object Pool and Collisions
-- Message Logger
 
 ## Unity Version
 
