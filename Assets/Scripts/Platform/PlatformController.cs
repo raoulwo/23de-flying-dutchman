@@ -43,11 +43,15 @@ namespace Platform
 
         public void OnReachedTop()
         {
+            GameEvents.PlatformReachedTop.Invoke();
+            
             _meshRenderer.material = topPositionMaterial;
         }
 
         public void OnReachedBottom()
         {
+            GameEvents.PlatformReachedBottom.Invoke();
+            
             _meshRenderer.material = bottomPositionMaterial;
         }
     }

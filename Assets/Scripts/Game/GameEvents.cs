@@ -14,5 +14,7 @@ namespace Game
         public static Action<Transform> WaveRangePlayerEnter;
         public static Action<Transform> WaveRangePlayerExit;
 
+        public static Action PlatformReachedTop;
+        public static Action PlatformReachedBottom;
     }
 }
