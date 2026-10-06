@@ -9,11 +9,13 @@
 
 ### Viktoriia Baikova
 
-- TODO
+- Platform animation
+- Solar panel animation
 
 ### Raoul Wograndl
 
-- TODO
+- Dancer animations
+- Waving logic
 
 ## Unity Version
 
