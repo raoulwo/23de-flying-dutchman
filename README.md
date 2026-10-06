@@ -1,4 +1,4 @@
-# 23DE Dirty Dancing Assignment
+# 23DE Funky Town Assignment
 
 ## Team
 
@@ -9,13 +9,16 @@
 
 ### Viktoriia Baikova
 
-- Platform animation
-- Solar panel animation
+- Particles
+- Lighting
+- Music
 
 ### Raoul Wograndl
 
-- Dancer animations
-- Waving logic
+- Compass and distance UI
+- Bullet UI
+- Static occlusion culling
+- Build settings
 
 ## Unity Version
 
