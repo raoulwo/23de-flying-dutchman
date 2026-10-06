@@ -1,4 +1,4 @@
-# 23DE Flying Dutchman Assignment
+# 23DE Dirty Dancing Assignment
 
 ## Team
 
@@ -9,14 +9,11 @@
 
 ### Viktoriia Baikova
 
-- Projectile Settings and Logic
-- Message Logger
+- TODO
 
 ### Raoul Wograndl
 
-- Spaceship Movement
-- Spaceship Collisions and Mass
-- Projectile Object Pool and Collisions
+- TODO
 
 ## Unity Version
 
