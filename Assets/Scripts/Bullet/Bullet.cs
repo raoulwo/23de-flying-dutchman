@@ -59,6 +59,8 @@ namespace Bullet
                 yield return null;
             }
 
+            GameEvents.ProjectileDespawn.Invoke();
+
             ReturnToPool();
         }
 

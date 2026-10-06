@@ -1,4 +1,3 @@
-using System;
 using Game;
 using UnityEngine;
 
@@ -14,7 +13,8 @@ namespace Platform
         
         private MeshRenderer _meshRenderer;
 
-        private float _playerDistance;
+        public Vector3 PlayerDistance => playerTransform.position - transform.position;
+
         private bool _playerWasInRange;
 
         private void Awake()
@@ -24,16 +24,16 @@ namespace Platform
 
         private void Update()
         {
-            _playerDistance = Vector3.Magnitude(playerTransform.position - transform.position);
+            var playerDistance = PlayerDistance.magnitude;
 
-            if (!_playerWasInRange && _playerDistance <= waveDistance)
+            if (!_playerWasInRange && playerDistance <= waveDistance)
             {
                 GameEvents.WaveRangePlayerEnter.Invoke(playerTransform);
                 
                 _playerWasInRange = true;
             }
 
-            if (_playerWasInRange && _playerDistance > waveDistance)
+            if (_playerWasInRange && playerDistance > waveDistance)
             {
                 GameEvents.WaveRangePlayerExit.Invoke(playerTransform);
                 

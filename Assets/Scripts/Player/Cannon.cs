@@ -1,4 +1,5 @@
-﻿using Input;
+﻿using Game;
+using Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Pool;
@@ -15,18 +16,22 @@ namespace Player
         [SerializeField] private float projectileVelocity = 1500f;
         [SerializeField] private float projectileCooldown = 0.1f;
 
+        [SerializeField] private int maxBullets = 10;
+
         [Header("Object Pool Parameters")] [SerializeField]
         private bool collectionCheck = true;
 
         [SerializeField] private int defaultCapacity = 20;
         [SerializeField] private int maxSize = 100;
 
+        public int CurrentBullets { get; private set; }
+
         private InputActions _actions;
 
         private IObjectPool<Bullet.Bullet> _objectPool;
 
         private float _nextTimeToShoot;
-
+        
         private void Awake()
         {
             _actions = new InputActions();
@@ -40,6 +45,8 @@ namespace Player
                 defaultCapacity,
                 maxSize
             );
+            
+            CurrentBullets = maxBullets;
         }
 
         private void OnEnable()
@@ -47,10 +54,16 @@ namespace Player
             _actions.Spaceship.Enable();
 
             _actions.Spaceship.Fire.performed += OnFire;
+
+            GameEvents.ProjectileCollision += OnProjectileCollision;
+            GameEvents.ProjectileDespawn += OnProjectileDespawn;
         }
 
         private void OnDisable()
         {
+            GameEvents.ProjectileCollision -= OnProjectileCollision;
+            GameEvents.ProjectileDespawn -= OnProjectileDespawn;
+            
             _actions.Spaceship.Fire.performed -= OnFire;
             
             _actions.Spaceship.Disable();
@@ -90,9 +103,18 @@ namespace Player
                 return;
             }
 
+            if (CurrentBullets < 2)
+            {
+                return;
+            }
+
             foreach (var spawnPoint in spawnPoints)
             {
                 Shoot(spawnPoint);
+
+                CurrentBullets--;
+                
+                GameEvents.BulletRemoved.Invoke();
             }
         }
 
@@ -114,6 +136,30 @@ namespace Player
             projectile.Deactivate();
 
             _nextTimeToShoot = Time.time + projectileCooldown;
+        }
+
+        private void OnProjectileCollision(Collision collision)
+        {
+            if (CurrentBullets >= maxBullets)
+            {
+                return;
+            }
+            
+            CurrentBullets++;
+            
+            GameEvents.BulletAdded.Invoke();
+        }
+
+        private void OnProjectileDespawn()
+        {
+            if (CurrentBullets >= maxBullets)
+            {
+                return;
+            }
+            
+            CurrentBullets++;
+            
+            GameEvents.BulletAdded.Invoke();
         }
     }
 }
